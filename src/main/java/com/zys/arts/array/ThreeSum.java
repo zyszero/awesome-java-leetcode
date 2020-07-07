@@ -79,4 +79,50 @@ public class ThreeSum {
         List<List<Integer>> lists = new ThreeSum().threeSum(new int[]{0, 0, 0});
         lists.forEach(l -> System.out.println(l.toString()));
     }
+
+
+    /**
+     * -4 -4 0 0 0 1 2 2 2 2 4
+     * -1 -1 0 1 1
+     *
+     * @param nums
+     * @return
+     */
+    public List<List<Integer>> threeSum2(int[] nums) {
+        // 边界限制
+        if (nums == null || nums.length < 3) {
+            return new ArrayList<>();
+        }
+        Arrays.sort(nums);
+        List<List<Integer>> result = new ArrayList<>();
+        for (int i = 0; i < nums.length - 2; i++) {
+            int a = nums[i];
+            // 局部优化，数组排序后，当a为正数时，后续元素都为正数
+            if (a > 0) {
+                break;
+            }
+            if (i == 0 || nums[i] != nums[i + 1]) {
+                int start = i + 1, end = nums.length - 1;
+                while (start < end) {
+                    int sum = -a;
+                    if (nums[start] + nums[end] > sum) {
+                        end--;
+                    } else if (nums[start] + nums[end] < sum) {
+                        start++;
+                    } else {
+                        result.add(Arrays.asList(a, nums[start], nums[end]));
+                        while (start + 1 < end && nums[start] == nums[start + 1]) {
+                            start++;
+                        }
+                        while (start < end - 1 && nums[end] == nums[end - 1]) {
+                            end--;
+                        }
+                        start++;
+                        end--;
+                    }
+                }
+            }
+        }
+        return result;
+    }
 }

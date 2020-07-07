@@ -100,35 +100,21 @@ public class TwoSum {
     }
 
 
-    /**
-     * 借助哈希表进行优化
-     *
-     * @param nums   输入数组
-     * @param target 目标值
-     * @return
-     */
     public static int[] twoSum(int[] nums, int target) {
         // 边界条件
-        if (nums.length < 1) {
+        if (nums == null || nums.length < 1) {
             throw new IllegalArgumentException("No two sum solution");
         }
-        int[] copy = Arrays.copyOf(nums, nums.length);
-        // 对输入的数组进行排序
-        Arrays.sort(copy);
-
-        //
-        int a = 0, b = nums.length - 1;
-
-        while (a < b) {
-            if (nums[a] + nums[b] > target) {
-                b--;
-            } else if (nums[a] + nums[b] < target) {
-                a++;
-            } else {
-                return new int[]{a, b};
+        int volume = 2048;
+        int bitMode = volume - 1;
+        int[] result = new int[volume];
+        for (int i = 0; i < nums.length; i++) {
+            int c = (target - nums[i]) & bitMode;
+            if (result[c] != 0) {
+                return new int[]{result[c] - 1, i};
             }
+            result[nums[i] & bitMode] = i + 1;
         }
-
         throw new IllegalArgumentException("No two sum solution");
     }
 
