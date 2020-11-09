@@ -1,4 +1,4 @@
-package com.zys.arts.binarySearch.no0704;
+package com.zys.arts.tree.no0704;
 
 /**
  * @author zys

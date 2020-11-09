@@ -1,4 +1,4 @@
-package com.zys.arts.binarySearch.no0153;
+package com.zys.arts.tree.no0153;
 
 /**
  * Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.
