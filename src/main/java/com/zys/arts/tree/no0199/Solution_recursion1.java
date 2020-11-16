@@ -3,9 +3,8 @@ package com.zys.arts.tree.no0199;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Solution_recursion {
+public class Solution_recursion1 {
 
-    private int maxDepth = Integer.MIN_VALUE;
 
     /**
      * DFS
@@ -24,9 +23,8 @@ public class Solution_recursion {
         if (node == null) {
             return;
         }
-        if (maxDepth < depth) {
+        if (res.size() == depth) {
             res.add(node.val);
-            maxDepth = depth;
         }
         depth(node.right, res, depth + 1);
         depth(node.left, res, depth + 1);
